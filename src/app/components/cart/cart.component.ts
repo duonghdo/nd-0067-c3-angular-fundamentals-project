@@ -14,6 +14,7 @@ export class CartComponent {
   constructor(public cartService: CartService, private router: Router) { }
 
   onSubmit() {
+    this.cartService.updateName(this.name);
     this.router.navigate(['/confirmation']);
   }
 }

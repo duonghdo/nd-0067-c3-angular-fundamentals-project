@@ -7,6 +7,7 @@ import { Product } from '../models/product';
 export class CartService {
   items: Product[] = [];
   total: number = 0;
+  name: string = '';
 
   constructor() {}
 
@@ -39,6 +40,12 @@ export class CartService {
 
   clearCart() {
     this.items = [];
+    this.total = 0;
+    this.name = '';
+  }
+
+  updateName(name: string) {
+    this.name = name;
   }
 
   calculateTotal() {
