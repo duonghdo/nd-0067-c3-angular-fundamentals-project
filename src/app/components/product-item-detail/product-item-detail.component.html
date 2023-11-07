@@ -5,6 +5,7 @@
     <div class="detail-item">
         <div>{{product?.name}}</div>
         <div>{{product?.price}}</div>
+        <div>{{product?.description}}</div>
         <div>
             <select class="select-input" [(ngModel)]="quantity">
                 <option *ngFor="let i of quantityList" [value]="i">{{i}}</option>

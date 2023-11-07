@@ -3,7 +3,7 @@ img {
   border-radius: 10px;
 }
 
-.form-margin {
+.form-margin * {
   margin-bottom: 12px;
 }
 

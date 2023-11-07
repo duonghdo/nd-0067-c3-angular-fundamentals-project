@@ -2,20 +2,49 @@ import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-  items:Product[] = [];
+  items: Product[] = [];
+  total: number = 0;
 
-  constructor() { }
+  constructor() {}
 
-  addItem(product:Product) {
+  addItem(product: Product) {
     let existingItem = this.items.find((item) => item.id === product.id);
     if (existingItem) {
       existingItem.quantity += product.quantity;
     } else {
       this.items.push(product);
     }
-    console.log(this.items);
+    this.calculateTotal();
+  }
+
+  updateItem(product: Product) {
+    let existingItem = this.items.find((item) => item.id === product.id);
+    if (existingItem) {
+      existingItem.quantity = product.quantity;
+
+      if (existingItem.quantity === 0) {
+        this.removeItem(product);
+      }
+    }
+    this.calculateTotal();
+  }
+
+  removeItem(product: Product) {
+    this.items = this.items.filter((item) => item.id !== product.id);
+    window.alert('Item removed from cart');
+  }
+
+  clearCart() {
+    this.items = [];
+  }
+
+  calculateTotal() {
+    this.total = 0;
+    this.items.forEach((item) => {
+      this.total += item.price * item.quantity;
+    });
   }
 }
