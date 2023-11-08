@@ -18,4 +18,9 @@ export class ProductListComponent {
       this.products = products;
     });
   }
+
+  addToCart(product: Product) {
+    this.cartService.addItem(product);
+    window.alert('Your product has been added to the cart!');
+  }
 }
